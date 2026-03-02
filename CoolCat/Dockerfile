@@ -35,7 +35,7 @@ RUN bun run build
 # ============================================================
 # Stage 3 – Production image (PHP 8.4 FPM + Alpine)
 # ============================================================
-FROM php:8.4-fpm-alpine AS production
+FROM php:8.5-fpm-alpine AS production
 
 # System dependencies
 RUN apk add --no-cache \
