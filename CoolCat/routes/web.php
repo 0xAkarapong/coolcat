@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\CatInquiryController;
 use App\Http\Controllers\CatListingController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,6 +24,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('listings.inquiries', CatInquiryController::class)
         ->shallow()
         ->only(['index', 'store', 'show', 'update', 'destroy']);
+
+    // Orders
+    Route::resource('orders', OrderController::class)->except(['create', 'edit', 'destroy']);
+
+    // Reviews (Product context)
+    Route::post('products/{product}/reviews', [ReviewController::class, 'store'])->name('products.reviews.store');
+    Route::resource('reviews', ReviewController::class)->only(['update', 'destroy']);
 });
 
 // Shop — public browsing
