@@ -11,24 +11,29 @@
             </flux:sidebar.header>
 
             <flux:sidebar.nav>
-                <flux:sidebar.group :heading="__('Platform')" class="grid">
-                    <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Dashboard') }}
-                    </flux:sidebar.item>
-                </flux:sidebar.group>
+                <flux:sidebar.item icon="home" :href="route('home')" :current="request()->routeIs('home')" wire:navigate>
+                    {{ __('Home') }}
+                </flux:sidebar.item>
+                <flux:sidebar.item icon="heart" :href="route('listings.index')" :current="request()->routeIs('listings.*')" wire:navigate>
+                    {{ __('Adopt') }}
+                </flux:sidebar.item>
+                <flux:sidebar.item icon="shopping-bag" :href="route('products.index')" :current="request()->routeIs('products.*')" wire:navigate>
+                    {{ __('Shop') }}
+                </flux:sidebar.item>
             </flux:sidebar.nav>
 
             <flux:spacer />
 
-            <flux:sidebar.nav>
-                <flux:sidebar.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                    {{ __('Repository') }}
-                </flux:sidebar.item>
-
-                <flux:sidebar.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-                    {{ __('Documentation') }}
-                </flux:sidebar.item>
-            </flux:sidebar.nav>
+            @auth
+                <flux:sidebar.nav>
+                    <flux:sidebar.item icon="squares-2x2" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                        {{ __('Dashboard') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="banknotes" :href="route('orders.index')" :current="request()->routeIs('orders.*')" wire:navigate>
+                        {{ __('My Orders') }}
+                    </flux:sidebar.item>
+                </flux:sidebar.nav>
+            @endauth
 
             @auth
                 <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()->name" />
