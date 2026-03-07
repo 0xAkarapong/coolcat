@@ -52,7 +52,7 @@ class Product extends Model
 
     public function scopeActive(Builder $query): Builder
     {
-        return $query->where('is_active', true);
+        return $query->where('is_active', 'true');
     }
 
     public function scopeInStock(Builder $query): Builder
