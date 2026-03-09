@@ -8,7 +8,7 @@
 
         <flux:heading size="xl">Orders</flux:heading>
 
-        <flux:tab.group>
+
             <flux:tabs>
                 <flux:tab name="purchases" icon="shopping-bag">My Purchases</flux:tab>
                 <flux:tab name="sales" icon="banknotes">Incoming Orders (Sales)</flux:tab>
@@ -109,7 +109,7 @@
                     </div>
                 @endif
             </flux:tab.panel>
-        </flux:tab.group>
+
 
     </div>
 </x-layouts::app>
