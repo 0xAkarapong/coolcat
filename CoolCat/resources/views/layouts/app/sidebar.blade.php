@@ -20,6 +20,11 @@
                 <flux:sidebar.item icon="shopping-bag" :href="route('products.index')" :current="request()->routeIs('products.*')" wire:navigate>
                     {{ __('Shop') }}
                 </flux:sidebar.item>
+                <flux:modal.trigger name="cart">
+                    <flux:sidebar.item icon="shopping-cart" class="cursor-pointer">
+                        {{ __('Cart') }}
+                    </flux:sidebar.item>
+                </flux:modal.trigger>
             </flux:sidebar.nav>
 
             <flux:spacer />
@@ -56,6 +61,10 @@
             <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
             <flux:spacer />
+
+            <flux:modal.trigger name="cart">
+                <flux:button variant="ghost" icon="shopping-cart" class="mr-2" />
+            </flux:modal.trigger>
 
             @auth
                 <flux:dropdown position="top" align="end">
@@ -115,6 +124,8 @@
         </flux:header>
 
         {{ $slot }}
+
+        <livewire:cart.shopping-cart />
 
         @fluxScripts
     </body>
