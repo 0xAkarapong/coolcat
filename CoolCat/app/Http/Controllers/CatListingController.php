@@ -39,7 +39,7 @@ class CatListingController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('cat-images', 'public');
+            $data['image'] = $request->file('image')->store('cat-images', 'supabase');
         }
 
         $listing = $request->user()->catListings()->create($data);
@@ -71,9 +71,9 @@ class CatListingController extends Controller
 
         if ($request->hasFile('image')) {
             if ($listing->image) {
-                Storage::disk('public')->delete($listing->image);
+                Storage::disk('supabase')->delete($listing->image);
             }
-            $data['image'] = $request->file('image')->store('cat-images', 'public');
+            $data['image'] = $request->file('image')->store('cat-images', 'supabase');
         }
 
         $listing->update($data);

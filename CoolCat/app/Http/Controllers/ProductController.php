@@ -37,7 +37,7 @@ class ProductController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('product-images', 'public');
+            $data['image'] = $request->file('image')->store('product-images', 'supabase');
         }
 
         $product = $request->user()->products()->create($data);
@@ -70,9 +70,9 @@ class ProductController extends Controller
 
         if ($request->hasFile('image')) {
             if ($product->image) {
-                Storage::disk('public')->delete($product->image);
+                Storage::disk('supabase')->delete($product->image);
             }
-            $data['image'] = $request->file('image')->store('product-images', 'public');
+            $data['image'] = $request->file('image')->store('product-images', 'supabase');
         }
 
         $product->update($data);

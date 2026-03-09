@@ -46,7 +46,7 @@ test('authenticated user can access the product create page', function () {
 });
 
 test('authenticated user can create a product', function () {
-    Storage::fake('public');
+    Storage::fake('supabase');
     $user = User::factory()->create();
 
     $this->actingAs($user)
@@ -66,7 +66,7 @@ test('authenticated user can create a product', function () {
         ->and($product->user_id)->toBe($user->id)
         ->and($product->image)->not->toBeNull();
 
-    Storage::disk('public')->assertExists($product->image);
+    Storage::disk('supabase')->assertExists($product->image);
 });
 
 // ── Owner — edit & update ────────────────────────────────────────────────────
@@ -89,7 +89,7 @@ test('non-owner cannot view the edit page for another user\'s product', function
 });
 
 test('owner can update their product', function () {
-    Storage::fake('public');
+    Storage::fake('supabase');
     $user = User::factory()->create();
     $product = Product::factory()->for($user)->create([
         'name' => 'Old Name',
@@ -107,8 +107,8 @@ test('owner can update their product', function () {
     expect($product->name)->toBe('New Name')
         ->and($product->image)->not->toBe('product-images/old.jpg');
 
-    Storage::disk('public')->assertExists($product->image);
-    Storage::disk('public')->assertMissing('product-images/old.jpg');
+    Storage::disk('supabase')->assertExists($product->image);
+    Storage::disk('supabase')->assertMissing('product-images/old.jpg');
 });
 
 test('non-owner cannot update another user\'s product', function () {
