@@ -27,6 +27,20 @@ class CatInquiryController extends Controller
     }
 
     /**
+     * Buyer views the inquiry creation form.
+     */
+    public function create(CatListing $listing): View
+    {
+        abort_if(
+            $listing->user_id === request()->user()->id,
+            403,
+            'You cannot inquire on your own listing.'
+        );
+
+        return view('inquiries.create', compact('listing'));
+    }
+
+    /**
      * Buyer submits a new inquiry on a listing.
      */
     public function store(StoreCatInquiryRequest $request, CatListing $listing): RedirectResponse

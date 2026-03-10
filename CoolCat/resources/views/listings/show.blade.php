@@ -43,7 +43,7 @@
                 @auth
                     @cannot('update', $listing)
                         <flux:button
-                            href="{{ route('listings.inquiries.store', $listing) }}"
+                            href="{{ route('listings.inquiries.create', $listing) }}"
                             variant="primary"
                             icon="chat-bubble-left-ellipsis"
                             class="w-full"

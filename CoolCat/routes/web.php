@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
     // Inquiries — shallow nested under listings
     Route::resource('listings.inquiries', CatInquiryController::class)
         ->shallow()
-        ->only(['index', 'store', 'show', 'update', 'destroy']);
+        ->only(['index', 'create', 'store', 'show', 'update', 'destroy']);
 
     // Orders
     Route::resource('orders', OrderController::class)->except(['create', 'edit', 'destroy']);
