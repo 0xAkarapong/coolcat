@@ -1,0 +1,51 @@
+user_id,breed_id,name,gender,birthdate,color,description,image,type,price,status,is_neutered,is_vaccinated,views,province
+5,3,Cat 1,male,2023-01-01,white,A very lovely cat looking for a new home.,,adoption,,reserved,true,true,109,Bangkok
+10,5,Cat 2,unknown,2023-01-01,white,A very lovely cat looking for a new home.,,adoption,,closed,false,false,149,Bangkok
+7,3,Cat 3,male,2023-01-01,orange,A very lovely cat looking for a new home.,,adoption,,active,false,true,133,Bangkok
+7,4,Cat 4,unknown,2023-01-01,orange,A very lovely cat looking for a new home.,,sale,9758.08,reserved,false,true,80,Chiang Mai
+8,3,Cat 5,unknown,2023-01-01,cream,A very lovely cat looking for a new home.,,sale,46828.69,reserved,true,false,191,Chiang Mai
+10,2,Cat 6,female,2023-01-01,cream,A very lovely cat looking for a new home.,,sale,30261.18,sold,true,true,19,Bangkok
+4,5,Cat 7,male,2023-01-01,tabby,A very lovely cat looking for a new home.,,sale,42316.73,active,false,true,38,Bangkok
+3,3,Cat 8,male,2023-01-01,grey,A very lovely cat looking for a new home.,,adoption,,active,false,true,0,Bangkok
+9,4,Cat 9,unknown,2023-01-01,calico,A very lovely cat looking for a new home.,,adoption,,reserved,false,false,5,Bangkok
+9,5,Cat 10,female,2023-01-01,white,A very lovely cat looking for a new home.,,sale,18626.34,closed,true,true,168,Chiang Mai
+7,5,Cat 11,female,2023-01-01,white,A very lovely cat looking for a new home.,,sale,16497.82,closed,false,true,191,Bangkok
+2,1,Cat 12,unknown,2023-01-01,black,A very lovely cat looking for a new home.,,sale,33259.3,closed,false,false,63,Bangkok
+7,5,Cat 13,male,2023-01-01,tabby,A very lovely cat looking for a new home.,,adoption,,closed,false,false,45,Bangkok
+6,5,Cat 14,male,2023-01-01,cream,A very lovely cat looking for a new home.,,adoption,,active,false,true,61,Phuket
+6,2,Cat 15,unknown,2023-01-01,cream,A very lovely cat looking for a new home.,,sale,4159.14,sold,false,true,94,Bangkok
+2,1,Cat 16,male,2023-01-01,white,A very lovely cat looking for a new home.,,adoption,,closed,false,true,198,Phuket
+10,1,Cat 17,male,2023-01-01,cream,A very lovely cat looking for a new home.,,adoption,,active,true,false,119,Phuket
+9,1,Cat 18,male,2023-01-01,black,A very lovely cat looking for a new home.,,sale,35699.29,reserved,false,true,47,Chiang Mai
+7,4,Cat 19,female,2023-01-01,grey,A very lovely cat looking for a new home.,,sale,13205.92,reserved,true,true,19,Bangkok
+1,5,Cat 20,unknown,2023-01-01,tabby,A very lovely cat looking for a new home.,,adoption,,active,true,true,6,Chiang Mai
+4,1,Cat 21,male,2023-01-01,grey,A very lovely cat looking for a new home.,,sale,44485.97,active,true,false,23,Bangkok
+10,3,Cat 22,female,2023-01-01,orange,A very lovely cat looking for a new home.,,sale,29233.75,closed,true,false,159,Bangkok
+2,1,Cat 23,male,2023-01-01,calico,A very lovely cat looking for a new home.,,adoption,,reserved,true,false,64,Chiang Mai
+4,4,Cat 24,female,2023-01-01,black,A very lovely cat looking for a new home.,,adoption,,sold,true,false,46,Phuket
+5,2,Cat 25,female,2023-01-01,tabby,A very lovely cat looking for a new home.,,sale,24827.18,active,false,true,159,Phuket
+7,4,Cat 26,unknown,2023-01-01,calico,A very lovely cat looking for a new home.,,sale,2668.46,sold,false,true,75,Chiang Mai
+9,3,Cat 27,unknown,2023-01-01,tabby,A very lovely cat looking for a new home.,,sale,737.98,sold,true,false,143,Chiang Mai
+2,2,Cat 28,male,2023-01-01,orange,A very lovely cat looking for a new home.,,sale,37338.75,closed,true,true,87,Chiang Mai
+5,4,Cat 29,unknown,2023-01-01,orange,A very lovely cat looking for a new home.,,sale,23981.39,sold,true,false,42,Chiang Mai
+9,1,Cat 30,female,2023-01-01,black,A very lovely cat looking for a new home.,,adoption,,sold,true,false,1,Phuket
+5,3,Cat 31,male,2023-01-01,calico,A very lovely cat looking for a new home.,,adoption,,active,false,false,53,Chiang Mai
+4,2,Cat 32,male,2023-01-01,orange,A very lovely cat looking for a new home.,,adoption,,reserved,true,true,14,Chiang Mai
+4,3,Cat 33,unknown,2023-01-01,cream,A very lovely cat looking for a new home.,,adoption,,sold,false,true,67,Phuket
+8,5,Cat 34,female,2023-01-01,orange,A very lovely cat looking for a new home.,,adoption,,active,true,false,176,Bangkok
+8,3,Cat 35,unknown,2023-01-01,orange,A very lovely cat looking for a new home.,,adoption,,active,false,true,101,Phuket
+4,5,Cat 36,female,2023-01-01,orange,A very lovely cat looking for a new home.,,adoption,,sold,false,false,112,Phuket
+7,1,Cat 37,male,2023-01-01,white,A very lovely cat looking for a new home.,,adoption,,closed,false,false,115,Bangkok
+6,5,Cat 38,unknown,2023-01-01,black,A very lovely cat looking for a new home.,,adoption,,reserved,true,true,101,Phuket
+8,1,Cat 39,male,2023-01-01,cream,A very lovely cat looking for a new home.,,adoption,,active,false,true,96,Chiang Mai
+7,2,Cat 40,female,2023-01-01,black,A very lovely cat looking for a new home.,,adoption,,reserved,false,false,59,Phuket
+9,2,Cat 41,unknown,2023-01-01,orange,A very lovely cat looking for a new home.,,adoption,,sold,false,true,193,Phuket
+8,3,Cat 42,unknown,2023-01-01,tabby,A very lovely cat looking for a new home.,,sale,33388.43,active,false,true,38,Chiang Mai
+8,5,Cat 43,male,2023-01-01,grey,A very lovely cat looking for a new home.,,adoption,,closed,false,false,174,Bangkok
+10,5,Cat 44,female,2023-01-01,grey,A very lovely cat looking for a new home.,,sale,48394.72,sold,true,true,16,Phuket
+4,3,Cat 45,male,2023-01-01,black,A very lovely cat looking for a new home.,,adoption,,closed,true,false,57,Bangkok
+2,4,Cat 46,female,2023-01-01,cream,A very lovely cat looking for a new home.,,sale,30564.23,active,true,true,137,Phuket
+7,1,Cat 47,male,2023-01-01,cream,A very lovely cat looking for a new home.,,sale,29549.22,sold,true,false,115,Bangkok
+10,5,Cat 48,male,2023-01-01,grey,A very lovely cat looking for a new home.,,adoption,,reserved,false,true,88,Phuket
+1,2,Cat 49,unknown,2023-01-01,white,A very lovely cat looking for a new home.,,adoption,,reserved,false,true,120,Phuket
+10,3,Cat 50,male,2023-01-01,calico,A very lovely cat looking for a new home.,,sale,5470.63,active,false,true,7,Phuket
