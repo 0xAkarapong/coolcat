@@ -8,14 +8,24 @@
 
         <flux:heading size="xl">Orders</flux:heading>
 
-
-            <flux:tabs>
-                <flux:tab name="purchases" icon="shopping-bag">My Purchases</flux:tab>
-                <flux:tab name="sales" icon="banknotes">Incoming Orders (Sales)</flux:tab>
-            </flux:tabs>
+        <div x-data="{ tab: 'purchases' }" class="flex flex-col gap-6">
+            <div class="flex gap-6 border-b border-zinc-200 dark:border-zinc-700">
+                <button @click="tab = 'purchases'"
+                    :class="tab === 'purchases' ? 'border-b-2 border-zinc-900 text-zinc-900 dark:border-zinc-100 dark:text-zinc-100' : 'text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300'"
+                    class="flex items-center gap-2 pb-3 text-sm font-medium transition-colors">
+                    <flux:icon name="shopping-bag" class="size-5" />
+                    My Purchases
+                </button>
+                <button @click="tab = 'sales'"
+                    :class="tab === 'sales' ? 'border-b-2 border-zinc-900 text-zinc-900 dark:border-zinc-100 dark:text-zinc-100' : 'text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300'"
+                    class="flex items-center gap-2 pb-3 text-sm font-medium transition-colors">
+                    <flux:icon name="banknotes" class="size-5" />
+                    Incoming Orders (Sales)
+                </button>
+            </div>
 
             {{-- Purchases Tab --}}
-            <flux:tab.panel name="purchases">
+            <div x-show="tab === 'purchases'" x-cloak>
                 @if ($buyerOrders->isEmpty())
                     <div class="flex flex-col items-center justify-center rounded-xl border border-zinc-200 py-16 dark:border-zinc-700">
                         <flux:icon name="shopping-bag" class="mb-3 size-10 text-zinc-400" />
@@ -63,10 +73,10 @@
                         @endforeach
                     </div>
                 @endif
-            </flux:tab.panel>
+            </div>
 
             {{-- Sales Tab --}}
-            <flux:tab.panel name="sales">
+            <div x-show="tab === 'sales'" x-cloak>
                 @if ($sellerOrders->isEmpty())
                     <div class="flex flex-col items-center justify-center rounded-xl border border-zinc-200 py-16 dark:border-zinc-700">
                         <flux:icon name="inbox" class="mb-3 size-10 text-zinc-400" />
@@ -108,8 +118,8 @@
                         @endforeach
                     </div>
                 @endif
-            </flux:tab.panel>
+            </div>
 
-
+        </div>
     </div>
 </x-layouts::app>

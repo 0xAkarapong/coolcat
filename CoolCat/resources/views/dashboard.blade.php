@@ -52,7 +52,7 @@
                 </div>
             </a>
 
-            <a href="#" class="group flex flex-col rounded-xl border border-zinc-200 bg-white p-5 transition hover:border-indigo-500 hover:shadow-sm dark:border-zinc-700 dark:bg-zinc-900 dark:hover:border-indigo-500">
+            <a href="{{ route('inquiries.my') }}" class="group flex flex-col rounded-xl border border-zinc-200 bg-white p-5 transition hover:border-indigo-500 hover:shadow-sm dark:border-zinc-700 dark:bg-zinc-900 dark:hover:border-indigo-500">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <div class="flex size-10 items-center justify-center rounded-lg bg-indigo-100 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-400">

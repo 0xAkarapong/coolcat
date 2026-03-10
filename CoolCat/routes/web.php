@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('products', ProductController::class)->except(['index', 'show']);
 
     // Inquiries — shallow nested under listings
+    Route::get('my-inquiries', [CatInquiryController::class, 'myInquiries'])->name('inquiries.my');
     Route::resource('listings.inquiries', CatInquiryController::class)
         ->shallow()
         ->only(['index', 'create', 'store', 'show', 'update', 'destroy']);

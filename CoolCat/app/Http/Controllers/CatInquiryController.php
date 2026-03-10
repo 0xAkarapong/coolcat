@@ -27,6 +27,30 @@ class CatInquiryController extends Controller
     }
 
     /**
+     * User views all their sent and received inquiries.
+     */
+    public function myInquiries(): View
+    {
+        $user = request()->user();
+
+        // Inquiries the user sent (as a buyer)
+        $sentInquiries = CatInquiry::where('buyer_id', $user->id)
+            ->with(['listing.user'])
+            ->latest()
+            ->get();
+
+        // Inquiries on the user's listings (as a seller)
+        $receivedInquiries = CatInquiry::whereHas('listing', function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })
+            ->with(['listing', 'buyer'])
+            ->latest()
+            ->get();
+
+        return view('inquiries.my', compact('sentInquiries', 'receivedInquiries'));
+    }
+
+    /**
      * Buyer views the inquiry creation form.
      */
     public function create(CatListing $listing): View
