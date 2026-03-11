@@ -83,7 +83,7 @@
                 {{-- Actions --}}
                 <div class="mt-4 flex gap-4">
                     @if ($product->stock > 0)
-                        <flux:button variant="primary" class="flex-1" icon="shopping-cart">
+                        <flux:button variant="primary" class="flex-1" icon="shopping-cart" x-on:click="window.Livewire.dispatch('add-to-cart', { productId: {{ $product->id }} })">
                             Add to Cart
                         </flux:button>
                     @else
@@ -96,38 +96,6 @@
         </div>
 
         {{-- Reviews Section --}}
-        <div class="mt-12 flex flex-col gap-6">
-            <flux:heading size="xl">Customer Reviews</flux:heading>
-
-            @if ($product->reviews->isEmpty())
-                <div class="flex flex-col items-center justify-center rounded-xl border border-dashed border-zinc-300 py-12 dark:border-zinc-600">
-                    <flux:text class="text-zinc-500">No reviews yet for this product.</flux:text>
-                </div>
-            @else
-                <div class="grid gap-6">
-                    @foreach ($product->reviews as $review)
-                        <div class="flex flex-col gap-2 rounded-xl border border-zinc-200 p-4 dark:border-zinc-700">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-2">
-                                    <div class="flex">
-                                        @for ($i = 1; $i <= 5; $i++)
-                                            <flux:icon name="star"
-                                                class="size-4 {{ $i <= $review->rating ? 'text-yellow-400 fill-yellow-400' : 'text-zinc-300' }}" />
-                                        @endfor
-                                    </div>
-                                    <flux:text class="font-medium text-zinc-900 dark:text-zinc-100">
-                                        {{ $review->user->name }}
-                                    </flux:text>
-                                </div>
-                                <flux:text class="text-xs text-zinc-500">
-                                    {{ $review->created_at->diffForHumans() }}
-                                </flux:text>
-                            </div>
-                            <flux:text>{{ $review->comment }}</flux:text>
-                        </div>
-                    @endforeach
-                </div>
-            @endif
-        </div>
+        <livewire:reviews.review-section :reviewable="$product" />
     </div>
 </x-layouts::app>

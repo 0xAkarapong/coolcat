@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use App\Models\Cart;
 use App\Models\CartItem;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,8 @@ use Livewire\Volt\Component;
 
 new class extends Component
 {
+    public $showCart = false;
+
     #[Computed]
     public function cart()
     {
@@ -36,6 +39,27 @@ new class extends Component
         unset($this->cart);
         unset($this->subtotal);
     }
+
+    #[On('add-to-cart')]
+    public function addToCart($productId)
+    {
+        $product = Product::findOrFail($productId);
+        
+        $item = $this->cart->items()->where('product_id', $product->id)->first();
+        
+        if ($item) {
+            $item->increment('quantity');
+        } else {
+            $this->cart->items()->create([
+                'product_id' => $product->id,
+                'quantity' => 1,
+                'price' => $product->price,
+            ]);
+        }
+        
+        $this->dispatch('cart-updated');
+        $this->showCart = true;
+    }
     
     public function removeItem($itemId)
     {
@@ -57,7 +81,7 @@ new class extends Component
 ?>
 
 <div>
-    <flux:modal name="cart" class="w-full sm:w-96" position="right">
+    <flux:modal name="cart" wire:model="showCart" class="w-full sm:w-96" position="right">
         <div class="flex flex-col h-full">
             <div class="flex items-center justify-between pb-4 mb-4 border-b border-zinc-200 dark:border-zinc-700">
                 <flux:heading size="xl">Your Cart</flux:heading>
@@ -105,7 +129,7 @@ new class extends Component
                     <flux:text class="font-medium">Subtotal</flux:text>
                     <flux:text class="font-bold text-lg">฿{{ number_format($this->subtotal, 2) }}</flux:text>
                 </div>
-                <flux:button variant="primary" class="w-full" href="{{ route('orders.create') ?? '#' }}">
+                <flux:button variant="primary" class="w-full" href="{{ Route::has('orders.create') ? route('orders.create') : '#' }}">
                     Proceed to Checkout
                 </flux:button>
             </div>

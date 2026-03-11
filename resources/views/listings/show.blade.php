@@ -143,24 +143,7 @@
                 @endif
 
                 {{-- Reviews --}}
-                @if ($listing->reviews->isNotEmpty())
-                    <div>
-                        <flux:heading size="sm" class="mb-3">Reviews</flux:heading>
-                        <div class="flex flex-col gap-3">
-                            @foreach ($listing->reviews as $review)
-                                <div class="rounded-xl border border-zinc-100 p-4 dark:border-zinc-700">
-                                    <div class="mb-1 flex items-center justify-between">
-                                        <flux:text class="font-medium">{{ $review->user->name }}</flux:text>
-                                        <flux:text class="text-xs text-yellow-500">
-                                            {{ str_repeat('★', $review->rating) }}{{ str_repeat('☆', 5 - $review->rating) }}
-                                        </flux:text>
-                                    </div>
-                                    <flux:text class="text-sm text-zinc-500">{{ $review->comment }}</flux:text>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
+                <livewire:reviews.review-section :reviewable="$listing" />
             </div>
         </div>
     </div>
