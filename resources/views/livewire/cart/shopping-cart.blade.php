@@ -9,79 +9,94 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Volt\Component;
 
-new class extends Component
-{
-    public $showCart = false;
+new class extends Component {
 
     #[Computed]
     public function cart()
     {
         if (Auth::check()) {
-            return Cart::with('items.product')->firstOrCreate(['user_id' => Auth::id()]);
+            return Cart::with("items.product")->firstOrCreate([
+                "user_id" => Auth::id(),
+            ]);
         }
-        
+
         $sessionId = Session::getId();
-        return Cart::with('items.product')->firstOrCreate([
-            'user_id' => null,
-            'session_id' => $sessionId
+        return Cart::with("items.product")->firstOrCreate([
+            "user_id" => null,
+            "session_id" => $sessionId,
         ]);
     }
-    
+
     #[Computed]
     public function subtotal()
     {
-        return $this->cart->items->sum(fn ($item) => $item->price * $item->quantity);
+        return $this->cart->items->sum(
+            fn($item) => $item->price * $item->quantity,
+        );
     }
-    
-    #[On('cart-updated')]
+
+    #[On("cart-updated")]
     public function refreshCart()
     {
         unset($this->cart);
         unset($this->subtotal);
     }
 
-    #[On('add-to-cart')]
+    #[On("add-to-cart")]
     public function addToCart($productId)
     {
         $product = Product::findOrFail($productId);
-        
-        $item = $this->cart->items()->where('product_id', $product->id)->first();
-        
+
+        if (!$product->is_active || $product->stock < 1) {
+            return;
+        }
+
+        $item = $this->cart
+            ->items()
+            ->where("product_id", $product->id)
+            ->first();
+
         if ($item) {
-            $item->increment('quantity');
+            if ($product->stock <= $item->quantity) {
+                return;
+            }
+
+            $item->increment("quantity");
         } else {
             $this->cart->items()->create([
-                'product_id' => $product->id,
-                'quantity' => 1,
-                'price' => $product->price,
+                "product_id" => $product->id,
+                "quantity" => 1,
+                "price" => $product->price,
             ]);
         }
-        
-        $this->dispatch('cart-updated');
-        $this->showCart = true;
+
+        $this->dispatch("cart-updated");
+        $this->modal('cart')->show();
     }
-    
+
     public function removeItem($itemId)
     {
-        $this->cart->items()->where('id', $itemId)->delete();
-        $this->dispatch('cart-updated');
+        $this->cart->items()->where("id", $itemId)->delete();
+        $this->dispatch("cart-updated");
     }
-    
+
     public function updateQuantity($itemId, $quantity)
     {
-        if ($quantity < 1) return;
-        
+        if ($quantity < 1) {
+            return;
+        }
+
         $item = $this->cart->items()->find($itemId);
         if ($item && $item->product->stock >= $quantity) {
-             $item->update(['quantity' => $quantity]);
-             $this->dispatch('cart-updated');
+            $item->update(["quantity" => $quantity]);
+            $this->dispatch("cart-updated");
         }
     }
 };
 ?>
 
 <div>
-    <flux:modal name="cart" wire:model="showCart" class="w-full sm:w-96" position="right">
+    <flux:modal name="cart" class="w-full sm:w-96" position="right">
         <div class="flex flex-col h-full">
             <div class="flex items-center justify-between pb-4 mb-4 border-b border-zinc-200 dark:border-zinc-700">
                 <flux:heading size="xl">Your Cart</flux:heading>
@@ -108,7 +123,7 @@ new class extends Component
                             <div class="flex flex-col flex-1">
                                 <flux:text class="font-medium truncate">{{ $item->product->name }}</flux:text>
                                 <flux:text class="text-xs text-zinc-500">฿{{ number_format($item->price, 2) }}</flux:text>
-                                
+
                                 <div class="flex items-center gap-2 mt-2">
                                     <flux:button variant="ghost" size="sm" icon="minus" class="size-6 p-0" wire:click="updateQuantity({{ $item->id }}, {{ $item->quantity - 1 }})" />
                                     <flux:text class="text-sm w-4 text-center">{{ $item->quantity }}</flux:text>

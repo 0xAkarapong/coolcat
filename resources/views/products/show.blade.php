@@ -82,7 +82,7 @@
 
                 {{-- Actions --}}
                 <div class="mt-4 flex gap-4">
-                    @if ($product->stock > 0)
+                    @if ($product->is_active && $product->stock > 0)
                         <flux:button variant="primary" class="flex-1" icon="shopping-cart" x-on:click="window.Livewire.dispatch('add-to-cart', { productId: {{ $product->id }} })">
                             Add to Cart
                         </flux:button>

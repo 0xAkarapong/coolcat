@@ -46,3 +46,33 @@ test('adding the same product twice increments quantity', function () {
     $cart = Cart::where('user_id', null)->first();
     expect($cart->items->first()->quantity)->toBe(2);
 });
+
+test('inactive products cannot be added to the cart', function () {
+    $product = Product::factory()->create([
+        'price' => 100,
+        'stock' => 10,
+        'is_active' => false,
+    ]);
+
+    Volt::test('cart.shopping-cart')
+        ->dispatch('add-to-cart', productId: $product->id)
+        ->assertNotDispatched('cart-updated');
+
+    expect(Cart::count())->toBe(1);
+    expect(Cart::first()->items)->toHaveCount(0);
+});
+
+test('out of stock products cannot be added to the cart', function () {
+    $product = Product::factory()->create([
+        'price' => 100,
+        'stock' => 0,
+        'is_active' => true,
+    ]);
+
+    Volt::test('cart.shopping-cart')
+        ->dispatch('add-to-cart', productId: $product->id)
+        ->assertNotDispatched('cart-updated');
+
+    expect(Cart::count())->toBe(1);
+    expect(Cart::first()->items)->toHaveCount(0);
+});

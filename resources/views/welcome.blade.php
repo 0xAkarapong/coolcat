@@ -46,7 +46,7 @@
         <section class="relative overflow-hidden bg-zinc-50 py-24 dark:bg-zinc-900">
             <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=2043&auto=format&fit=crop')] bg-cover bg-center bg-no-repeat opacity-10 dark:opacity-20"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-zinc-50 to-transparent dark:from-zinc-900"></div>
-            
+
             <div class="relative mx-auto max-w-4xl px-6 text-center">
                 <flux:heading size="xl" class="!text-5xl !font-extrabold tracking-tight sm:!text-6xl text-zinc-900 dark:text-white">
                     Find Your <span class="text-orange-500">Purr-fect</span> Companion
@@ -98,7 +98,7 @@
                                     <h3 class="font-bold text-lg leading-tight group-hover:text-orange-500 transition-colors">{{ $listing->name }}</h3>
                                     <p class="text-sm text-zinc-500 mt-0.5">{{ $listing->breed?->name ?? 'Mixed Breed' }} • {{ $listing->age }} mos</p>
                                 </div>
-                                <span class="font-semibold text-lg">฿{{ number_format($listing->price) }}</span>
+                                <span class="font-semibold text-lg">฿{{ number_format((float) $listing->price, 2) }}</span>
                             </div>
                         </div>
                     </a>
@@ -139,7 +139,7 @@
                             </div>
                             <h3 class="font-medium text-zinc-900 dark:text-white line-clamp-1">{{ $product->name }}</h3>
                             <p class="text-sm text-zinc-500 mt-1 mb-2">{{ ucfirst($product->category) }}</p>
-                            <div class="mt-auto font-semibold">฿{{ number_format($product->price, 2) }}</div>
+                            <div class="mt-auto font-semibold">฿{{ number_format((float) $product->price, 2) }}</div>
                         </a>
                     @empty
                         <div class="col-span-full py-12 text-center text-zinc-500">
